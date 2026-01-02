@@ -121,6 +121,54 @@ class LinkedList:
             temp = after
         return True
     
+    def partition_list(self,key):
+        d1 = Node(value = 0)
+        d2 = Node(value = 0)
+        temp_1 = d1
+        temp_2 = d2
+
+        temp = self.head
+
+        while(temp):
+            if temp.value<key:
+                temp_1.next = temp
+                temp_1 = temp
+            else:
+                temp_2.next = temp
+                temp_2 = temp
+
+            temp = temp.next
+        
+        temp_2.next = None
+        temp_1.next = d2.next
+        self.head = d1.next
+        return True
+    
+    def reverse_between(self,start,end):
+        
+        if self.length<=1:
+            return True
+            
+        Dummy = Node(0)
+        
+            
+        Dummy.next = self.head
+        
+        pre = Dummy
+        
+        for i in range(start):
+            pre = pre.next
+            
+        curr = pre.next
+        
+        
+        for _ in range(end-start):
+            to_move = curr.next
+            curr.next = to_move.next
+            to_move.next = pre.next
+            pre.next = to_move
+            
+        self.head = Dummy.next
 
 
 
