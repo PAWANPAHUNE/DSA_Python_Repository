@@ -16,7 +16,7 @@ class DoublyLinkedList:
         while temp:
             print(temp.value)
             temp = temp.next
-            
+
     def append(self,value):
         new_node = Node(value)
         if self.head == None:
@@ -128,6 +128,39 @@ class DoublyLinkedList:
         else:
             return False
         
+    def reverse_between(self, start, end):
+        if self.head is None or self.head.next is None:
+            return False
+        Dummy = Node(0)
+        self.head.pre = Dummy
+        Dummy.next = self.head
+        pre = Dummy
+        for i in range (start):
+            pre = pre.next
+        curr = pre.next
+        for _ in range(end-start):
+            to_move = curr.next
+            pre.next = to_move
+            to_move.pre = pre
+            curr.next = to_move.next
+            if curr.next is not None:
+                curr.next.pre = curr
+            to_move.next=pre.next
+            curr.pre = to_move
+
+            temp=pre
+            print(f"it is {_}")
+            while(temp):
+                print(temp.value)
+                temp=temp.next
+            print("\n")
+
+
+            
+        self.head = Dummy.next
+        self.head.pre = None
+        self.print_list()
+        print("\n")
             
 
 
