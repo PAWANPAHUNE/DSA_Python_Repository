@@ -14,10 +14,10 @@ class rBST:
             return Node(value)
         if value < current.value:
             current.left = self.__r_insert(current.left,value)
-        if value > current.alue:
+        if value > current.value:
             current.right = self.__r_insert(current.right,value)
 
-        return current.value
+        return current
 
     def r_insert(self,value):
         if self.root is None:
